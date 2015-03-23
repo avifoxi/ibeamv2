@@ -7,13 +7,12 @@ class ConstraintDay < ActiveRecord::Base
 
 	validates :hold_for_perf_starts, presence: true, if: :hold_for_perf_ends
 
+	validate :performance_times_within_avails, if: :hold_for_perf_starts && :hold_for_perf_ends
 
 	private 
 
-	# why doesn't the below work ?
-
 	def performance_times_within_avails
-		unless :hold_for_perf_starts.hour >= :avail_starting.hour && :hold_for_perf_ends.hour <= :avail_ending.hour
+		unless self.hold_for_perf_starts.hour >= self.avail_starting.hour && self.hold_for_perf_ends.hour <= self.avail_ending.hour
 			errors.add(:performance_holds, 'must fall within the available scheduling hours')
 		end
 
