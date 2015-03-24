@@ -612,3 +612,890 @@ Migrating to CreateConstraintDays (20150323213327)
   [1m[35m (0.1ms)[0m  rollback transaction
   [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
   [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "constraint_days"[0m
+  [1m[35mConstraintDay Load (0.3ms)[0m  SELECT "constraint_days".* FROM "constraint_days"
+  [1m[36mConstraintDay Load (0.4ms)[0m  [1mSELECT "constraint_days".* FROM "constraint_days"[0m
+  [1m[35mConstraintDay Load (0.5ms)[0m  SELECT "constraint_days".* FROM "constraint_days"
+  [1m[36m (0.2ms)[0m  [1mbegin transaction[0m
+  [1m[35mConstraintDay Exists (0.3ms)[0m  SELECT  1 AS one FROM "constraint_days" WHERE "constraint_days"."name" IS NULL LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mConstraintDay Exists (0.3ms)[0m  [1mSELECT  1 AS one FROM "constraint_days" WHERE "constraint_days"."name" = 'standard weekday' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mConstraintDay Exists (0.2ms)[0m  SELECT  1 AS one FROM "constraint_days" WHERE "constraint_days"."name" = 'standard weeerkday' LIMIT 1
+  [1m[36mSQL (0.6ms)[0m  [1mINSERT INTO "constraint_days" ("avail_starting", "avail_ending", "name", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["avail_starting", "2000-01-01 07:00:00.000000"], ["avail_ending", "2000-01-01 22:30:00.000000"], ["name", "standard weeerkday"], ["created_at", "2015-03-24 01:37:08.494677"], ["updated_at", "2015-03-24 01:37:08.494677"]]
+  [1m[35m (11.5ms)[0m  commit transaction
+  [1m[36mConstraintDay Load (0.2ms)[0m  [1mSELECT  "constraint_days".* FROM "constraint_days"  ORDER BY "constraint_days"."id" DESC LIMIT 1[0m
+  [1m[36m (1.0ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  select sqlite_version(*)
+  [1m[36m (1.0ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.2ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+Migrating to CreateUsers (20150323211025)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "default_hrs_per_month" integer, "username" varchar, "email" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20150323211025"]]
+  [1m[35m (1.0ms)[0m  commit transaction
+Migrating to CreateReservations (20150323211341)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.5ms)[0m  CREATE TABLE "reservations" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "date" date, "start_time" time, "end_time" time, "is_performance" boolean, "fee_is_processed" boolean, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.2ms)[0m  [1mCREATE  INDEX "index_reservations_on_user_id" ON "reservations" ("user_id")[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20150323211341"]]
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+Migrating to CreateConstraintWeekTemplates (20150323212151)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.4ms)[0m  [1mCREATE TABLE "constraint_week_templates" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "max_lookahead_for_reh" integer, "max_lookahead_for_perf" integer, "release_unbooked_perf_lookahead" integer, "active_starting" date, "monday_id" integer, "tuesday_id" integer, "wednesday_id" integer, "thursday_id" integer, "friday_id" integer, "saturday_id" integer, "sunday_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.2ms)[0m  CREATE  INDEX "index_constraint_week_templates_on_monday_id" ON "constraint_week_templates" ("monday_id")
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_constraint_week_templates_on_monday_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_constraint_week_templates_on_monday_id' AND type='index'
+[0m
+  [1m[35m (0.2ms)[0m  CREATE  INDEX "index_constraint_week_templates_on_tuesday_id" ON "constraint_week_templates" ("tuesday_id")
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_constraint_week_templates_on_tuesday_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_constraint_week_templates_on_tuesday_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_constraint_week_templates_on_monday_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_constraint_week_templates_on_monday_id' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1mCREATE  INDEX "index_constraint_week_templates_on_wednesday_id" ON "constraint_week_templates" ("wednesday_id")[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_constraint_week_templates_on_wednesday_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_constraint_week_templates_on_wednesday_id' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_constraint_week_templates_on_tuesday_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_constraint_week_templates_on_tuesday_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_constraint_week_templates_on_monday_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_constraint_week_templates_on_monday_id' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1mCREATE  INDEX "index_constraint_week_templates_on_thursday_id" ON "constraint_week_templates" ("thursday_id")[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_constraint_week_templates_on_thursday_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_constraint_week_templates_on_thursday_id' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_constraint_week_templates_on_wednesday_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_constraint_week_templates_on_wednesday_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_constraint_week_templates_on_tuesday_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_constraint_week_templates_on_tuesday_id' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_constraint_week_templates_on_monday_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_constraint_week_templates_on_monday_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  CREATE  INDEX "index_constraint_week_templates_on_friday_id" ON "constraint_week_templates" ("friday_id")
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_constraint_week_templates_on_friday_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_constraint_week_templates_on_friday_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_constraint_week_templates_on_thursday_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_constraint_week_templates_on_thursday_id' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_constraint_week_templates_on_wednesday_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_constraint_week_templates_on_wednesday_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_constraint_week_templates_on_tuesday_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_constraint_week_templates_on_tuesday_id' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_constraint_week_templates_on_monday_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_constraint_week_templates_on_monday_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  CREATE  INDEX "index_constraint_week_templates_on_saturday_id" ON "constraint_week_templates" ("saturday_id")
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_constraint_week_templates_on_saturday_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_constraint_week_templates_on_saturday_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_constraint_week_templates_on_friday_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_constraint_week_templates_on_friday_id' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_constraint_week_templates_on_thursday_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_constraint_week_templates_on_thursday_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_constraint_week_templates_on_wednesday_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_constraint_week_templates_on_wednesday_id' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_constraint_week_templates_on_tuesday_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_constraint_week_templates_on_tuesday_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_constraint_week_templates_on_monday_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_constraint_week_templates_on_monday_id' AND type='index'
+
+  [1m[36m (0.2ms)[0m  [1mCREATE  INDEX "index_constraint_week_templates_on_sunday_id" ON "constraint_week_templates" ("sunday_id")[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20150323212151"]]
+  [1m[36m (1.1ms)[0m  [1mcommit transaction[0m
+Migrating to CreateConstraintDays (20150323213327)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.4ms)[0m  [1mCREATE TABLE "constraint_days" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "avail_starting" time, "avail_ending" time, "hold_for_perf_starts" time, "hold_for_perf_ends" time, "name" varchar, "block_whole_day" boolean, "special_hold_date" date, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20150323213327"]]
+  [1m[36m (0.9ms)[0m  [1mcommit transaction[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (0.2ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_constraint_week_templates_on_sunday_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_constraint_week_templates_on_sunday_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_constraint_week_templates_on_saturday_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_constraint_week_templates_on_saturday_id' AND type='index'
+
+  [1m[36m (0.2ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_constraint_week_templates_on_friday_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_constraint_week_templates_on_friday_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_constraint_week_templates_on_thursday_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_constraint_week_templates_on_thursday_id' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_constraint_week_templates_on_wednesday_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_constraint_week_templates_on_wednesday_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_constraint_week_templates_on_tuesday_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_constraint_week_templates_on_tuesday_id' AND type='index'
+
+  [1m[36m (0.2ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_constraint_week_templates_on_monday_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_constraint_week_templates_on_monday_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_reservations_on_user_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_reservations_on_user_id' AND type='index'
+
+  [1m[36m (0.2ms)[0m  [1mbegin transaction[0m
+  [1m[35mConstraintDay Exists (0.2ms)[0m  SELECT  1 AS one FROM "constraint_days" WHERE "constraint_days"."name" = 'standard weekday' LIMIT 1
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "constraint_days" ("avail_starting", "avail_ending", "name", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["avail_starting", "2000-01-01 07:00:00.000000"], ["avail_ending", "2000-01-01 22:00:00.000000"], ["name", "standard weekday"], ["created_at", "2015-03-24 01:47:02.987835"], ["updated_at", "2015-03-24 01:47:02.987835"]]
+  [1m[35m (8.9ms)[0m  commit transaction
+  [1m[36mConstraintDay Load (0.5ms)[0m  [1mSELECT  "constraint_days".* FROM "constraint_days"  ORDER BY "constraint_days"."id" DESC LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.5ms)[0m  [1mDELETE FROM "constraint_days" WHERE "constraint_days"."id" = ?[0m  [["id", 1]]
+  [1m[35m (9.7ms)[0m  commit transaction
+  [1m[36mConstraintDay Load (0.4ms)[0m  [1mSELECT "constraint_days".* FROM "constraint_days"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mConstraintDay Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "constraint_days" WHERE "constraint_days"."name" = 'standard weekday' LIMIT 1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "constraint_days" ("avail_starting", "avail_ending", "name", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["avail_starting", "2000-01-01 07:00:00.000000"], ["avail_ending", "2000-01-01 22:00:00.000000"], ["name", "standard weekday"], ["created_at", "2015-03-24 01:50:46.275917"], ["updated_at", "2015-03-24 01:50:46.275917"]]
+  [1m[36m (8.0ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mConstraintDay Exists (0.4ms)[0m  [1mSELECT  1 AS one FROM "constraint_days" WHERE "constraint_days"."name" = 'standard friday saturday' LIMIT 1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "constraint_days" ("avail_starting", "avail_ending", "hold_for_perf_starts", "hold_for_perf_ends", "name", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)  [["avail_starting", "2000-01-01 07:00:00.000000"], ["avail_ending", "2000-01-01 23:59:00.000000"], ["hold_for_perf_starts", "2000-01-01 18:00:00.000000"], ["hold_for_perf_ends", "2000-01-01 23:59:00.000000"], ["name", "standard friday saturday"], ["created_at", "2015-03-24 01:50:46.290697"], ["updated_at", "2015-03-24 01:50:46.290697"]]
+  [1m[36m (1.0ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mConstraintDay Exists (0.4ms)[0m  [1mSELECT  1 AS one FROM "constraint_days" WHERE "constraint_days"."name" = 'lazy sunday' LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "constraint_days" ("avail_starting", "avail_ending", "name", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["avail_starting", "2000-01-01 09:00:00.000000"], ["avail_ending", "2000-01-01 21:00:00.000000"], ["name", "lazy sunday"], ["created_at", "2015-03-24 01:50:46.296230"], ["updated_at", "2015-03-24 01:50:46.296230"]]
+  [1m[36m (1.0ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mConstraintDay Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "constraint_days" WHERE "constraint_days"."name" = 'bday block whole' LIMIT 1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "constraint_days" ("avail_starting", "avail_ending", "name", "block_whole_day", "special_hold_date", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)  [["avail_starting", "2000-01-01 07:00:00.000000"], ["avail_ending", "2000-01-01 21:00:00.000000"], ["name", "bday block whole"], ["block_whole_day", "t"], ["special_hold_date", "2015-04-19"], ["created_at", "2015-03-24 01:50:46.302440"], ["updated_at", "2015-03-24 01:50:46.302440"]]
+  [1m[36m (0.9ms)[0m  [1mcommit transaction[0m
+  [1m[36mConstraintDay Load (5.4ms)[0m  [1mSELECT "constraint_days".* FROM "constraint_days"[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "constraint_days"
+  [1m[36m (9.4ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  select sqlite_version(*)
+  [1m[36m (1.7ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.2ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+Migrating to CreateUsers (20150323211025)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.6ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "default_hrs_per_month" integer, "username" varchar, "email" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20150323211025"]]
+  [1m[35m (1.2ms)[0m  commit transaction
+Migrating to CreateReservations (20150323211341)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.6ms)[0m  CREATE TABLE "reservations" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "date" date, "start_time" time, "end_time" time, "is_performance" boolean, "fee_is_processed" boolean, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.2ms)[0m  [1mCREATE  INDEX "index_reservations_on_user_id" ON "reservations" ("user_id")[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20150323211341"]]
+  [1m[36m (1.2ms)[0m  [1mcommit transaction[0m
+Migrating to CreateConstraintWeekTemplates (20150323212151)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.6ms)[0m  [1mCREATE TABLE "constraint_week_templates" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "max_lookahead_for_reh" integer, "max_lookahead_for_perf" integer, "release_unbooked_perf_lookahead" integer, "active_starting" date, "monday_id" integer, "tuesday_id" integer, "wednesday_id" integer, "thursday_id" integer, "friday_id" integer, "saturday_id" integer, "sunday_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.2ms)[0m  CREATE  INDEX "index_constraint_week_templates_on_monday_id" ON "constraint_week_templates" ("monday_id")
+  [1m[36m (0.3ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_constraint_week_templates_on_monday_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_constraint_week_templates_on_monday_id' AND type='index'
+[0m
+  [1m[35m (0.2ms)[0m  CREATE  INDEX "index_constraint_week_templates_on_tuesday_id" ON "constraint_week_templates" ("tuesday_id")
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_constraint_week_templates_on_tuesday_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_constraint_week_templates_on_tuesday_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_constraint_week_templates_on_monday_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_constraint_week_templates_on_monday_id' AND type='index'
+
+  [1m[36m (0.2ms)[0m  [1mCREATE  INDEX "index_constraint_week_templates_on_wednesday_id" ON "constraint_week_templates" ("wednesday_id")[0m
+  [1m[35m (0.2ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_constraint_week_templates_on_wednesday_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_constraint_week_templates_on_wednesday_id' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_constraint_week_templates_on_tuesday_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_constraint_week_templates_on_tuesday_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_constraint_week_templates_on_monday_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_constraint_week_templates_on_monday_id' AND type='index'
+
+  [1m[36m (0.2ms)[0m  [1mCREATE  INDEX "index_constraint_week_templates_on_thursday_id" ON "constraint_week_templates" ("thursday_id")[0m
+  [1m[35m (0.2ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_constraint_week_templates_on_thursday_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_constraint_week_templates_on_thursday_id' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_constraint_week_templates_on_wednesday_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_constraint_week_templates_on_wednesday_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_constraint_week_templates_on_tuesday_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_constraint_week_templates_on_tuesday_id' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_constraint_week_templates_on_monday_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_constraint_week_templates_on_monday_id' AND type='index'
+[0m
+  [1m[35m (0.2ms)[0m  CREATE  INDEX "index_constraint_week_templates_on_friday_id" ON "constraint_week_templates" ("friday_id")
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_constraint_week_templates_on_friday_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_constraint_week_templates_on_friday_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_constraint_week_templates_on_thursday_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_constraint_week_templates_on_thursday_id' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_constraint_week_templates_on_wednesday_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_constraint_week_templates_on_wednesday_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_constraint_week_templates_on_tuesday_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_constraint_week_templates_on_tuesday_id' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_constraint_week_templates_on_monday_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_constraint_week_templates_on_monday_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  CREATE  INDEX "index_constraint_week_templates_on_saturday_id" ON "constraint_week_templates" ("saturday_id")
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_constraint_week_templates_on_saturday_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_constraint_week_templates_on_saturday_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_constraint_week_templates_on_friday_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_constraint_week_templates_on_friday_id' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_constraint_week_templates_on_thursday_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_constraint_week_templates_on_thursday_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_constraint_week_templates_on_wednesday_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_constraint_week_templates_on_wednesday_id' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_constraint_week_templates_on_tuesday_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_constraint_week_templates_on_tuesday_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_constraint_week_templates_on_monday_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_constraint_week_templates_on_monday_id' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1mCREATE  INDEX "index_constraint_week_templates_on_sunday_id" ON "constraint_week_templates" ("sunday_id")[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20150323212151"]]
+  [1m[36m (1.1ms)[0m  [1mcommit transaction[0m
+Migrating to CreateConstraintDays (20150323213327)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.7ms)[0m  [1mCREATE TABLE "constraint_days" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "avail_starting" time, "avail_ending" time, "hold_for_perf_starts" time, "hold_for_perf_ends" time, "name" varchar, "block_whole_day" boolean, "special_hold_date" date, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20150323213327"]]
+  [1m[36m (1.1ms)[0m  [1mcommit transaction[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (0.2ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_constraint_week_templates_on_sunday_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_constraint_week_templates_on_sunday_id' AND type='index'
+[0m
+  [1m[35m (0.2ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_constraint_week_templates_on_saturday_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_constraint_week_templates_on_saturday_id' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_constraint_week_templates_on_friday_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_constraint_week_templates_on_friday_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_constraint_week_templates_on_thursday_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_constraint_week_templates_on_thursday_id' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_constraint_week_templates_on_wednesday_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_constraint_week_templates_on_wednesday_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_constraint_week_templates_on_tuesday_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_constraint_week_templates_on_tuesday_id' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_constraint_week_templates_on_monday_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_constraint_week_templates_on_monday_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_reservations_on_user_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_reservations_on_user_id' AND type='index'
+
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mConstraintDay Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "constraint_days" WHERE "constraint_days"."name" = 'standard weekday' LIMIT 1[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "constraint_days" ("avail_starting", "avail_ending", "name", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["avail_starting", "2000-01-01 07:00:00.000000"], ["avail_ending", "2000-01-01 22:00:00.000000"], ["name", "standard weekday"], ["created_at", "2015-03-24 01:54:02.353092"], ["updated_at", "2015-03-24 01:54:02.353092"]]
+  [1m[36m (8.1ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mConstraintDay Exists (0.4ms)[0m  [1mSELECT  1 AS one FROM "constraint_days" WHERE "constraint_days"."name" = 'standard friday saturday' LIMIT 1[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "constraint_days" ("avail_starting", "avail_ending", "hold_for_perf_starts", "hold_for_perf_ends", "name", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)  [["avail_starting", "2000-01-01 07:00:00.000000"], ["avail_ending", "2000-01-01 23:59:00.000000"], ["hold_for_perf_starts", "2000-01-01 18:00:00.000000"], ["hold_for_perf_ends", "2000-01-01 23:59:00.000000"], ["name", "standard friday saturday"], ["created_at", "2015-03-24 01:54:02.367893"], ["updated_at", "2015-03-24 01:54:02.367893"]]
+  [1m[36m (1.5ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mConstraintDay Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "constraint_days" WHERE "constraint_days"."name" = 'lazy sunday' LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "constraint_days" ("avail_starting", "avail_ending", "name", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["avail_starting", "2000-01-01 09:00:00.000000"], ["avail_ending", "2000-01-01 21:00:00.000000"], ["name", "lazy sunday"], ["created_at", "2015-03-24 01:54:02.374746"], ["updated_at", "2015-03-24 01:54:02.374746"]]
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mConstraintDay Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "constraint_days" WHERE "constraint_days"."name" = 'bday block whole' LIMIT 1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "constraint_days" ("avail_starting", "avail_ending", "name", "block_whole_day", "special_hold_date", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)  [["avail_starting", "2000-01-01 07:00:00.000000"], ["avail_ending", "2000-01-01 21:00:00.000000"], ["name", "bday block whole"], ["block_whole_day", "t"], ["special_hold_date", "2015-04-19"], ["created_at", "2015-03-24 01:54:02.380308"], ["updated_at", "2015-03-24 01:54:02.380308"]]
+  [1m[36m (1.4ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.7ms)[0m  [1mINSERT INTO "constraint_week_templates" ("max_lookahead_for_reh", "max_lookahead_for_perf", "release_unbooked_perf_lookahead", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["max_lookahead_for_reh", 90], ["max_lookahead_for_perf", 120], ["release_unbooked_perf_lookahead", 30], ["created_at", "2015-03-24 01:54:02.406389"], ["updated_at", "2015-03-24 01:54:02.406389"]]
+  [1m[35m (1.3ms)[0m  commit transaction
+  [1m[36mConstraintWeekTemplate Load (0.4ms)[0m  [1mSELECT  "constraint_week_templates".* FROM "constraint_week_templates"  ORDER BY "constraint_week_templates"."id" DESC LIMIT 1[0m
+  [1m[35mConstraintWeekTemplate Load (0.5ms)[0m  SELECT  "constraint_week_templates".* FROM "constraint_week_templates"  ORDER BY "constraint_week_templates"."id" DESC LIMIT 1
+  [1m[36mConstraintDay Load (0.2ms)[0m  [1mSELECT  "constraint_days".* FROM "constraint_days"  ORDER BY "constraint_days"."id" ASC LIMIT 1[0m
+  [1m[35mConstraintWeekTemplate Load (0.3ms)[0m  SELECT  "constraint_week_templates".* FROM "constraint_week_templates"  ORDER BY "constraint_week_templates"."id" DESC LIMIT 1
+  [1m[36mConstraintDay Load (0.3ms)[0m  [1mSELECT  "constraint_days".* FROM "constraint_days"  ORDER BY "constraint_days"."id" ASC LIMIT 1[0m
+  [1m[35m (0.4ms)[0m  begin transaction
+  [1m[36mSQL (1.3ms)[0m  [1mUPDATE "constraint_week_templates" SET "monday_id" = ?, "updated_at" = ? WHERE "constraint_week_templates"."id" = ?[0m  [["monday_id", 1], ["updated_at", "2015-03-24 01:55:11.812770"], ["id", 1]]
+  [1m[35m (1.1ms)[0m  commit transaction
+  [1m[36m (9.4ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  select sqlite_version(*)
+  [1m[36m (1.5ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.2ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+Migrating to CreateUsers (20150323211025)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.5ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "default_hrs_per_month" integer, "username" varchar, "email" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20150323211025"]]
+  [1m[35m (0.9ms)[0m  commit transaction
+Migrating to CreateReservations (20150323211341)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  CREATE TABLE "reservations" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "date" date, "start_time" time, "end_time" time, "is_performance" boolean, "fee_is_processed" boolean, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.2ms)[0m  [1mCREATE  INDEX "index_reservations_on_user_id" ON "reservations" ("user_id")[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20150323211341"]]
+  [1m[36m (0.8ms)[0m  [1mcommit transaction[0m
+Migrating to CreateConstraintWeekTemplates (20150323212151)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.3ms)[0m  [1mCREATE TABLE "constraint_week_templates" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "max_lookahead_for_reh" integer, "max_lookahead_for_perf" integer, "release_unbooked_perf_lookahead" integer, "active_starting" date, "monday_id" integer, "tuesday_id" integer, "wednesday_id" integer, "thursday_id" integer, "friday_id" integer, "saturday_id" integer, "sunday_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35m (0.2ms)[0m  CREATE  INDEX "index_constraint_week_templates_on_monday_id" ON "constraint_week_templates" ("monday_id")
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_constraint_week_templates_on_monday_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_constraint_week_templates_on_monday_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  CREATE  INDEX "index_constraint_week_templates_on_tuesday_id" ON "constraint_week_templates" ("tuesday_id")
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_constraint_week_templates_on_tuesday_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_constraint_week_templates_on_tuesday_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_constraint_week_templates_on_monday_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_constraint_week_templates_on_monday_id' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1mCREATE  INDEX "index_constraint_week_templates_on_wednesday_id" ON "constraint_week_templates" ("wednesday_id")[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_constraint_week_templates_on_wednesday_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_constraint_week_templates_on_wednesday_id' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_constraint_week_templates_on_tuesday_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_constraint_week_templates_on_tuesday_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_constraint_week_templates_on_monday_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_constraint_week_templates_on_monday_id' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1mCREATE  INDEX "index_constraint_week_templates_on_thursday_id" ON "constraint_week_templates" ("thursday_id")[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_constraint_week_templates_on_thursday_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_constraint_week_templates_on_thursday_id' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_constraint_week_templates_on_wednesday_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_constraint_week_templates_on_wednesday_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_constraint_week_templates_on_tuesday_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_constraint_week_templates_on_tuesday_id' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_constraint_week_templates_on_monday_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_constraint_week_templates_on_monday_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  CREATE  INDEX "index_constraint_week_templates_on_friday_id" ON "constraint_week_templates" ("friday_id")
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_constraint_week_templates_on_friday_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_constraint_week_templates_on_friday_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_constraint_week_templates_on_thursday_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_constraint_week_templates_on_thursday_id' AND type='index'
+
+  [1m[36m (0.0ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_constraint_week_templates_on_wednesday_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_constraint_week_templates_on_wednesday_id' AND type='index'
+[0m
+  [1m[35m (0.0ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_constraint_week_templates_on_tuesday_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_constraint_week_templates_on_tuesday_id' AND type='index'
+
+  [1m[36m (0.0ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_constraint_week_templates_on_monday_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_constraint_week_templates_on_monday_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  CREATE  INDEX "index_constraint_week_templates_on_saturday_id" ON "constraint_week_templates" ("saturday_id")
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_constraint_week_templates_on_saturday_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_constraint_week_templates_on_saturday_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_constraint_week_templates_on_friday_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_constraint_week_templates_on_friday_id' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_constraint_week_templates_on_thursday_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_constraint_week_templates_on_thursday_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_constraint_week_templates_on_wednesday_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_constraint_week_templates_on_wednesday_id' AND type='index'
+
+  [1m[36m (0.0ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_constraint_week_templates_on_tuesday_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_constraint_week_templates_on_tuesday_id' AND type='index'
+[0m
+  [1m[35m (0.0ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_constraint_week_templates_on_monday_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_constraint_week_templates_on_monday_id' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1mCREATE  INDEX "index_constraint_week_templates_on_sunday_id" ON "constraint_week_templates" ("sunday_id")[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20150323212151"]]
+  [1m[36m (1.0ms)[0m  [1mcommit transaction[0m
+Migrating to CreateConstraintDays (20150323213327)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.3ms)[0m  [1mCREATE TABLE "constraint_days" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "avail_starting" time, "avail_ending" time, "hold_for_perf_starts" time, "hold_for_perf_ends" time, "name" varchar, "block_whole_day" boolean, "special_hold_date" date, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20150323213327"]]
+  [1m[36m (0.9ms)[0m  [1mcommit transaction[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (0.3ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_constraint_week_templates_on_sunday_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_constraint_week_templates_on_sunday_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_constraint_week_templates_on_saturday_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_constraint_week_templates_on_saturday_id' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_constraint_week_templates_on_friday_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_constraint_week_templates_on_friday_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_constraint_week_templates_on_thursday_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_constraint_week_templates_on_thursday_id' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_constraint_week_templates_on_wednesday_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_constraint_week_templates_on_wednesday_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_constraint_week_templates_on_tuesday_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_constraint_week_templates_on_tuesday_id' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_constraint_week_templates_on_monday_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_constraint_week_templates_on_monday_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_reservations_on_user_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_reservations_on_user_id' AND type='index'
+
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mConstraintDay Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "constraint_days" WHERE "constraint_days"."name" = 'standard weekday' LIMIT 1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "constraint_days" ("avail_starting", "avail_ending", "name", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["avail_starting", "2000-01-01 07:00:00.000000"], ["avail_ending", "2000-01-01 22:00:00.000000"], ["name", "standard weekday"], ["created_at", "2015-03-24 01:55:45.994704"], ["updated_at", "2015-03-24 01:55:45.994704"]]
+  [1m[36m (8.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36mConstraintDay Exists (0.6ms)[0m  [1mSELECT  1 AS one FROM "constraint_days" WHERE "constraint_days"."name" = 'standard friday saturday' LIMIT 1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "constraint_days" ("avail_starting", "avail_ending", "hold_for_perf_starts", "hold_for_perf_ends", "name", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)  [["avail_starting", "2000-01-01 07:00:00.000000"], ["avail_ending", "2000-01-01 23:59:00.000000"], ["hold_for_perf_starts", "2000-01-01 18:00:00.000000"], ["hold_for_perf_ends", "2000-01-01 23:59:00.000000"], ["name", "standard friday saturday"], ["created_at", "2015-03-24 01:55:46.009247"], ["updated_at", "2015-03-24 01:55:46.009247"]]
+  [1m[36m (0.9ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mConstraintDay Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "constraint_days" WHERE "constraint_days"."name" = 'lazy sunday' LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "constraint_days" ("avail_starting", "avail_ending", "name", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["avail_starting", "2000-01-01 09:00:00.000000"], ["avail_ending", "2000-01-01 21:00:00.000000"], ["name", "lazy sunday"], ["created_at", "2015-03-24 01:55:46.014661"], ["updated_at", "2015-03-24 01:55:46.014661"]]
+  [1m[36m (0.9ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mConstraintDay Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "constraint_days" WHERE "constraint_days"."name" = 'bday block whole' LIMIT 1[0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO "constraint_days" ("avail_starting", "avail_ending", "name", "block_whole_day", "special_hold_date", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)  [["avail_starting", "2000-01-01 07:00:00.000000"], ["avail_ending", "2000-01-01 21:00:00.000000"], ["name", "bday block whole"], ["block_whole_day", "t"], ["special_hold_date", "2015-04-19"], ["created_at", "2015-03-24 01:55:46.019351"], ["updated_at", "2015-03-24 01:55:46.019351"]]
+  [1m[36m (0.9ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "constraint_week_templates" ("max_lookahead_for_reh", "max_lookahead_for_perf", "release_unbooked_perf_lookahead", "monday_id", "tuesday_id", "wednesday_id", "thursday_id", "friday_id", "saturday_id", "sunday_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["max_lookahead_for_reh", 90], ["max_lookahead_for_perf", 120], ["release_unbooked_perf_lookahead", 30], ["monday_id", 1], ["tuesday_id", 1], ["wednesday_id", 1], ["thursday_id", 1], ["friday_id", 2], ["saturday_id", 2], ["sunday_id", 3], ["created_at", "2015-03-24 01:55:46.063620"], ["updated_at", "2015-03-24 01:55:46.063620"]]
+  [1m[35m (1.2ms)[0m  commit transaction
+  [1m[36mConstraintWeekTemplate Load (0.3ms)[0m  [1mSELECT  "constraint_week_templates".* FROM "constraint_week_templates"  ORDER BY "constraint_week_templates"."id" DESC LIMIT 1[0m

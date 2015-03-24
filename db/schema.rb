@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 20150323213327) do
     t.time     "hold_for_perf_starts"
     t.time     "hold_for_perf_ends"
     t.string   "name"
-    t.boolean  "is_special_hold"
+    t.boolean  "block_whole_day"
     t.date     "special_hold_date"
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
