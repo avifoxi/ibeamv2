@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(version: 20150323213327) do
     t.integer  "max_lookahead_for_reh"
     t.integer  "max_lookahead_for_perf"
     t.integer  "release_unbooked_perf_lookahead", default: 30
-    t.date     "active_starting",                 default: '2015-03-23'
+    t.date     "active_starting",                 default: '2015-03-25'
     t.integer  "monday_id"
     t.integer  "tuesday_id"
     t.integer  "wednesday_id"

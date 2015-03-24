@@ -1,0 +1,2 @@
+module ConstraintWeekTemplatesHelper
+end

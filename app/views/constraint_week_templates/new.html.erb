@@ -1,0 +1,49 @@
+<h3>Constraint Days To Choose From</h3>
+
+<table class="table table-bordered">
+
+	<tr>
+		<th>Name</th>
+		<th>Availability Starts</th>
+		<th>Avail Ends</th>
+		<th>Performance Block?</th>
+		<th>Block starts</th>
+		<th>Block ends</th>
+		<th>Special Hold?</th>
+		<th>Block Full Day?</th>
+	</tr>
+	<% @cds.each do |cd| %>
+
+		<tr>
+			<th><%= cd.name %></th>
+			<td><%= cd.avail_starting.hour %></td>
+			<td><%= cd.avail_ending.hour %></td>
+			<td><%= cd.hold_for_perf_starts ? true : false %></td>
+			<td><%= cd.hold_for_perf_starts.hour if cd.hold_for_perf_starts %></td>
+			<td><%= cd.hold_for_perf_ends.hour if cd.hold_for_perf_ends %></td>
+			<td><%= cd.special_hold_date ? cd.special_hold_date : false %></td>
+			<td><%= cd.block_whole_day %></td>
+		</tr>
+	<% end %>
+</table>
+
+<hr>
+<h3>Choose Constraints for each day of the constraint week template</h3>
+<%= simple_form_for @cwt do |cwt| %>
+
+	<%= cwt.input :monday, collection: @cds %>
+	<%= cwt.input :tuesday, collection: @cds %>
+	<%= cwt.input :wednesday, collection: @cds %>
+	<%= cwt.input :thursday, collection: @cds %>
+	<%= cwt.input :friday, collection: @cds %>
+	<%= cwt.input :saturday, collection: @cds %>
+	<%= cwt.input :sunday, collection: @cds %>
+
+	<hr>
+	<%= cwt.input :max_lookahead_for_reh %>
+	<%= cwt.input :max_lookahead_for_perf %>
+	<%= cwt.input :release_unbooked_perf_lookahead %>
+	<%= cwt.input :active_starting %>
+	
+	<%= cwt.button :submit %>
+<% end %>
