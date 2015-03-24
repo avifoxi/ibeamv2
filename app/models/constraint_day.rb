@@ -22,7 +22,7 @@ class ConstraintDay < ActiveRecord::Base
 	end
 
 	def special_hold_date_is_in_future
-		unless self.special_hold_date > Date.today
+		unless self.special_hold_date.future?
 			errors.add(:special_hold_date, 'must not take effect on a past date')
 		end
 	end

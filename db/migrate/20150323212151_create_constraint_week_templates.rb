@@ -3,8 +3,9 @@ class CreateConstraintWeekTemplates < ActiveRecord::Migration
     create_table :constraint_week_templates do |t|
       t.integer :max_lookahead_for_reh
       t.integer :max_lookahead_for_perf
-      t.integer :release_unbooked_perf_lookahead
-      t.date :active_starting
+      t.integer :release_unbooked_perf_lookahead, default: 30
+      t.date :active_starting,                    default: Date.today
+      
       t.references :monday, index: true, foreign_key: true
       t.references :tuesday, index: true, foreign_key: true
       t.references :wednesday, index: true, foreign_key: true
