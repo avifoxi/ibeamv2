@@ -8,23 +8,28 @@ class ConstraintDaysController < ApplicationController
 		p '*'*80
 		p 'params'
 		p "#{params}"
-		@cd = ConstraintDay.new(full_params)
+		# @cd = ConstraintDay.new(full_params)
 		p '*'*80
-		p 'initialized cd'
-		p "#{@cd.inspect}"
-		p 'valid?'
-		p "#{@cd.valid?}"
+		# p 'initialized cd'
+		# p "#{@cd.inspect}"
+		# p 'valid?'
+		# p "#{@cd.valid?}"
 
-		p 'errors'
-		p "#{@cd.errors.inspect}"
+		# p 'errors'
+		# p "#{@cd.errors.inspect}"
 
-		p "full ps"
-		p "#{full_params.inspect}"
+		# p "full ps"
+		# p "#{time_params.inspect}"
 
+		# p '*'*80
+		# p "Time.new with full_params['avail_starting(4i)']"
+		# p full_params['avail_starting(4i)'].inspect
+
+		# Time.parse('20:00')
 		p '*'*80
 		p 'testing times from full_params'
 		p "#{time_params.inspect}"
-
+		# ConstraintDay.new(time_params)
 	end
 
 
@@ -47,15 +52,17 @@ class ConstraintDaysController < ApplicationController
 	def time_params
 		puts 'inside times method'
 		return_obj = {
-			avail_starting: Time.new("#{full_params['avail_starting(4i)']}:00"), 
-			avail_ending: Time.new("#{full_params['avail_ending(4i)']}:00")
+			avail_starting: "#{full_params['avail_starting(4i)']}:00", 
+			avail_ending: "#{full_params['avail_ending(4i)']}:00"
 		}
 		if full_params['special_hold'] == '1'
-			return_obj[:special_hold_date] = full_params[:special_hold_date]
+			return_obj[:special_hold_date] = "#{full_params['special_hold_date(1i)']}-#{full_params['special_hold_date(2i)']}-#{full_params['special_hold_date(3i)']}"
+
+			# full_pa
 		end
 		if full_params['hold_performance_block'] == '1'
-			return_obj[:hold_for_perf_starts] = full_params[:hold_for_perf_starts]
-			return_obj[:hold_for_perf_ends] = full_params[:hold_for_perf_ends]
+			return_obj[:hold_for_perf_starts] = "#{full_params['hold_for_perf_starts(4i)']}:00"
+			return_obj[:hold_for_perf_ends] = "#{full_params['hold_for_perf_ends(4i)']}:00 "
 		end
 		return_obj
 	end
