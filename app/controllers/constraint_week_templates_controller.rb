@@ -4,4 +4,8 @@ class ConstraintWeekTemplatesController < ApplicationController
 		@cds = ConstraintDay.all
 		@cwt = ConstraintWeekTemplate.new
 	end
+
+	def index
+		@cds = ConstraintDay.all
+	end
 end

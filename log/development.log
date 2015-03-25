@@ -9002,3 +9002,357 @@ ActionView::MissingTemplate - Missing template constraint_days/create, applicati
 
 
 Started POST "/__better_errors/fbe47be366c0a76d/variables" for ::1 at 2015-03-25 14:24:59 -0400
+
+
+Started POST "/constraint_days" for ::1 at 2015-03-25 14:29:36 -0400
+Processing by ConstraintDaysController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"78rocMYK+Xx8P8gsW6stb1ja/n1B1GhMu5GXr89Y+rVb2uHUZBvH37PzQg9fccfPinGTKiqOnSN5AwIgJWC7Zw==", "constraint_day"=>{"name"=>"Foo BAR", "avail_starting(1i)"=>"2015", "avail_starting(2i)"=>"3", "avail_starting(3i)"=>"25", "avail_starting(4i)"=>"09", "avail_starting(5i)"=>"11", "avail_ending(1i)"=>"2015", "avail_ending(2i)"=>"3", "avail_ending(3i)"=>"25", "avail_ending(4i)"=>"12", "avail_ending(5i)"=>"11", "hold_performance_block"=>"0", "hold_for_perf_starts(1i)"=>"2015", "hold_for_perf_starts(2i)"=>"3", "hold_for_perf_starts(3i)"=>"25", "hold_for_perf_starts(4i)"=>"18", "hold_for_perf_starts(5i)"=>"11", "hold_for_perf_ends(1i)"=>"2015", "hold_for_perf_ends(2i)"=>"3", "hold_for_perf_ends(3i)"=>"25", "hold_for_perf_ends(4i)"=>"18", "hold_for_perf_ends(5i)"=>"11", "special_hold"=>"0", "special_hold_date(1i)"=>"2017", "special_hold_date(2i)"=>"3", "special_hold_date(3i)"=>"25"}, "commit"=>"Create Constraint day"}
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mConstraintDay Exists (0.8ms)[0m  [1mSELECT  1 AS one FROM "constraint_days" WHERE "constraint_days"."name" = 'Foo BAR' LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  Rendered constraint_days/_form.html.erb (180.8ms)
+  Rendered constraint_days/new.html.erb within layouts/application (184.4ms)
+  Rendered layouts/_navigation_links.html.erb (0.2ms)
+  Rendered layouts/_navigation.html.erb (1.7ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 369ms (Views: 320.3ms | ActiveRecord: 1.6ms)
+
+
+Started POST "/constraint_days" for ::1 at 2015-03-25 14:30:52 -0400
+Processing by ConstraintDaysController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"dI1fHfa/V3+VNzjIUzRh7U+Ri9w6JhrApIHEskysOjLAnVa5VK5p3Fr7sutX7otNnTrmi1F8769mE1E9ppR74A==", "constraint_day"=>{"name"=>"Foo BAR", "avail_starting(1i)"=>"2000", "avail_starting(2i)"=>"1", "avail_starting(3i)"=>"1", "avail_starting(4i)"=>"09", "avail_starting(5i)"=>"0", "avail_ending(1i)"=>"2000", "avail_ending(2i)"=>"1", "avail_ending(3i)"=>"1", "avail_ending(4i)"=>"12", "avail_ending(5i)"=>"0", "hold_performance_block"=>"0", "hold_for_perf_starts(1i)"=>"2015", "hold_for_perf_starts(2i)"=>"3", "hold_for_perf_starts(3i)"=>"25", "hold_for_perf_starts(4i)"=>"18", "hold_for_perf_starts(5i)"=>"11", "hold_for_perf_ends(1i)"=>"2015", "hold_for_perf_ends(2i)"=>"3", "hold_for_perf_ends(3i)"=>"25", "hold_for_perf_ends(4i)"=>"18", "hold_for_perf_ends(5i)"=>"11", "special_hold"=>"0", "special_hold_date(1i)"=>"2017", "special_hold_date(2i)"=>"3", "special_hold_date(3i)"=>"25"}, "commit"=>"Create Constraint day"}
+Completed 500 Internal Server Error in 9ms (ActiveRecord: 0.6ms)
+
+ArgumentError - When assigning attributes, you must pass a hash as an argument.:
+  activerecord (4.2.1) lib/active_record/attribute_assignment.rb:25:in `assign_attributes'
+  activerecord (4.2.1) lib/active_record/core.rb:559:in `init_attributes'
+  activerecord (4.2.1) lib/active_record/core.rb:281:in `initialize'
+  activerecord (4.2.1) lib/active_record/inheritance.rb:61:in `new'
+   () Users/AviFoxi/Desktop/active_projects/ibeam_notes_projects/ibeam_v2/app/controllers/constraint_days_controller.rb:11:in `create'
+  actionpack (4.2.1) lib/action_controller/metal/implicit_render.rb:4:in `send_action'
+  actionpack (4.2.1) lib/abstract_controller/base.rb:198:in `process_action'
+  actionpack (4.2.1) lib/action_controller/metal/rendering.rb:10:in `process_action'
+  actionpack (4.2.1) lib/abstract_controller/callbacks.rb:20:in `block in process_action'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:117:in `call'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:555:in `block (2 levels) in compile'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:505:in `call'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:92:in `_run_callbacks'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:776:in `_run_process_action_callbacks'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.1) lib/abstract_controller/callbacks.rb:19:in `process_action'
+  actionpack (4.2.1) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (4.2.1) lib/action_controller/metal/instrumentation.rb:32:in `block in process_action'
+  activesupport (4.2.1) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (4.2.1) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.2.1) lib/active_support/notifications.rb:164:in `instrument'
+  actionpack (4.2.1) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+  actionpack (4.2.1) lib/action_controller/metal/params_wrapper.rb:250:in `process_action'
+  activerecord (4.2.1) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (4.2.1) lib/abstract_controller/base.rb:137:in `process'
+  actionview (4.2.1) lib/action_view/rendering.rb:30:in `process'
+  actionpack (4.2.1) lib/action_controller/metal.rb:196:in `dispatch'
+  actionpack (4.2.1) lib/action_controller/metal/rack_delegation.rb:13:in `dispatch'
+  actionpack (4.2.1) lib/action_controller/metal.rb:237:in `block in action'
+  actionpack (4.2.1) lib/action_dispatch/routing/route_set.rb:74:in `dispatch'
+  actionpack (4.2.1) lib/action_dispatch/routing/route_set.rb:43:in `serve'
+  actionpack (4.2.1) lib/action_dispatch/journey/router.rb:43:in `block in serve'
+  actionpack (4.2.1) lib/action_dispatch/journey/router.rb:30:in `serve'
+  actionpack (4.2.1) lib/action_dispatch/routing/route_set.rb:819:in `call'
+  rack (1.6.0) lib/rack/etag.rb:24:in `call'
+  rack (1.6.0) lib/rack/conditionalget.rb:38:in `call'
+  rack (1.6.0) lib/rack/head.rb:13:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/flash.rb:260:in `call'
+  rack (1.6.0) lib/rack/session/abstract/id.rb:225:in `context'
+  rack (1.6.0) lib/rack/session/abstract/id.rb:220:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/cookies.rb:560:in `call'
+  activerecord (4.2.1) lib/active_record/query_cache.rb:36:in `call'
+  activerecord (4.2.1) lib/active_record/connection_adapters/abstract/connection_pool.rb:649:in `call'
+  activerecord (4.2.1) lib/active_record/migration.rb:378:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:88:in `_run_callbacks'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:776:in `_run_call_callbacks'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.1) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/remote_ip.rb:78:in `call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:84:in `protected_app_call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:79:in `better_errors_call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:57:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  web-console (2.1.2) lib/web_console/middleware.rb:37:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.1) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.1) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.1) lib/rails/rack/logger.rb:20:in `call'
+  quiet_assets (1.1.0) lib/quiet_assets.rb:27:in `call_with_quiet_assets'
+  actionpack (4.2.1) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.0) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.0) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.0) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/static.rb:113:in `call'
+  rack (1.6.0) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.1) lib/rails/engine.rb:518:in `call'
+  railties (4.2.1) lib/rails/application.rb:164:in `call'
+  rack (1.6.0) lib/rack/lock.rb:17:in `call'
+  rack (1.6.0) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.0) lib/rack/handler/webrick.rb:89:in `service'
+   () Users/AviFoxi/.rvm/rubies/ruby-2.2.0/lib/ruby/2.2.0/webrick/httpserver.rb:138:in `service'
+   () Users/AviFoxi/.rvm/rubies/ruby-2.2.0/lib/ruby/2.2.0/webrick/httpserver.rb:94:in `run'
+   () Users/AviFoxi/.rvm/rubies/ruby-2.2.0/lib/ruby/2.2.0/webrick/server.rb:294:in `block in start_thread'
+
+
+
+Started POST "/__better_errors/1656fa26459fa93f/variables" for ::1 at 2015-03-25 14:30:52 -0400
+
+
+Started POST "/constraint_days" for ::1 at 2015-03-25 14:31:05 -0400
+Processing by ConstraintDaysController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"dI1fHfa/V3+VNzjIUzRh7U+Ri9w6JhrApIHEskysOjLAnVa5VK5p3Fr7sutX7otNnTrmi1F8769mE1E9ppR74A==", "constraint_day"=>{"name"=>"Foo BAR", "avail_starting(1i)"=>"2000", "avail_starting(2i)"=>"1", "avail_starting(3i)"=>"1", "avail_starting(4i)"=>"09", "avail_starting(5i)"=>"0", "avail_ending(1i)"=>"2000", "avail_ending(2i)"=>"1", "avail_ending(3i)"=>"1", "avail_ending(4i)"=>"12", "avail_ending(5i)"=>"0", "hold_performance_block"=>"0", "hold_for_perf_starts(1i)"=>"2015", "hold_for_perf_starts(2i)"=>"3", "hold_for_perf_starts(3i)"=>"25", "hold_for_perf_starts(4i)"=>"18", "hold_for_perf_starts(5i)"=>"11", "hold_for_perf_ends(1i)"=>"2015", "hold_for_perf_ends(2i)"=>"3", "hold_for_perf_ends(3i)"=>"25", "hold_for_perf_ends(4i)"=>"18", "hold_for_perf_ends(5i)"=>"11", "special_hold"=>"0", "special_hold_date(1i)"=>"2017", "special_hold_date(2i)"=>"3", "special_hold_date(3i)"=>"25"}, "commit"=>"Create Constraint day"}
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mConstraintDay Exists (0.2ms)[0m  SELECT  1 AS one FROM "constraint_days" WHERE "constraint_days"."name" = 'Foo BAR' LIMIT 1
+  [1m[36mSQL (8.3ms)[0m  [1mINSERT INTO "constraint_days" ("name", "avail_starting", "avail_ending", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Foo BAR"], ["avail_starting", "2000-01-01 09:00:00.000000"], ["avail_ending", "2000-01-01 12:00:00.000000"], ["created_at", "2015-03-25 18:31:05.420269"], ["updated_at", "2015-03-25 18:31:05.420269"]]
+  [1m[35m (4.8ms)[0m  commit transaction
+Redirected to http://localhost:3000/constraint_week_templates
+Completed 302 Found in 35ms (ActiveRecord: 14.0ms)
+
+
+Started GET "/constraint_week_templates" for ::1 at 2015-03-25 14:31:05 -0400
+
+AbstractController::ActionNotFound - The action 'index' could not be found for ConstraintWeekTemplatesController:
+  actionpack (4.2.1) lib/abstract_controller/base.rb:132:in `process'
+  actionview (4.2.1) lib/action_view/rendering.rb:30:in `process'
+  actionpack (4.2.1) lib/action_controller/metal.rb:196:in `dispatch'
+  actionpack (4.2.1) lib/action_controller/metal/rack_delegation.rb:13:in `dispatch'
+  actionpack (4.2.1) lib/action_controller/metal.rb:237:in `block in action'
+  actionpack (4.2.1) lib/action_dispatch/routing/route_set.rb:74:in `dispatch'
+  actionpack (4.2.1) lib/action_dispatch/routing/route_set.rb:43:in `serve'
+  actionpack (4.2.1) lib/action_dispatch/journey/router.rb:43:in `block in serve'
+  actionpack (4.2.1) lib/action_dispatch/journey/router.rb:30:in `serve'
+  actionpack (4.2.1) lib/action_dispatch/routing/route_set.rb:819:in `call'
+  rack (1.6.0) lib/rack/etag.rb:24:in `call'
+  rack (1.6.0) lib/rack/conditionalget.rb:25:in `call'
+  rack (1.6.0) lib/rack/head.rb:13:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/flash.rb:260:in `call'
+  rack (1.6.0) lib/rack/session/abstract/id.rb:225:in `context'
+  rack (1.6.0) lib/rack/session/abstract/id.rb:220:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/cookies.rb:560:in `call'
+  activerecord (4.2.1) lib/active_record/query_cache.rb:36:in `call'
+  activerecord (4.2.1) lib/active_record/connection_adapters/abstract/connection_pool.rb:649:in `call'
+  activerecord (4.2.1) lib/active_record/migration.rb:378:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:88:in `_run_callbacks'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:776:in `_run_call_callbacks'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.1) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/remote_ip.rb:78:in `call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:84:in `protected_app_call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:79:in `better_errors_call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:57:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  web-console (2.1.2) lib/web_console/middleware.rb:37:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.1) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.1) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.1) lib/rails/rack/logger.rb:20:in `call'
+  quiet_assets (1.1.0) lib/quiet_assets.rb:27:in `call_with_quiet_assets'
+  actionpack (4.2.1) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.0) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.0) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.0) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/static.rb:113:in `call'
+  rack (1.6.0) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.1) lib/rails/engine.rb:518:in `call'
+  railties (4.2.1) lib/rails/application.rb:164:in `call'
+  rack (1.6.0) lib/rack/lock.rb:17:in `call'
+  rack (1.6.0) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.0) lib/rack/handler/webrick.rb:89:in `service'
+   () Users/AviFoxi/.rvm/rubies/ruby-2.2.0/lib/ruby/2.2.0/webrick/httpserver.rb:138:in `service'
+   () Users/AviFoxi/.rvm/rubies/ruby-2.2.0/lib/ruby/2.2.0/webrick/httpserver.rb:94:in `run'
+   () Users/AviFoxi/.rvm/rubies/ruby-2.2.0/lib/ruby/2.2.0/webrick/server.rb:294:in `block in start_thread'
+
+
+
+Started POST "/__better_errors/64cc8e98734e6b23/variables" for ::1 at 2015-03-25 14:31:05 -0400
+
+
+Started GET "/constraint_week_templates" for ::1 at 2015-03-25 14:34:36 -0400
+Processing by ConstraintWeekTemplatesController#index as HTML
+  [1m[36mConstraintDay Load (0.4ms)[0m  [1mSELECT "constraint_days".* FROM "constraint_days"[0m
+  Rendered constraint_days/_chart_display.html.erb (9.9ms)
+  Rendered constraint_week_templates/index.html.erb within layouts/application (11.7ms)
+  Rendered layouts/_navigation_links.html.erb (0.2ms)
+  Rendered layouts/_navigation.html.erb (1.7ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 159ms (Views: 153.5ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/constraint_week_templates" for ::1 at 2015-03-25 14:35:38 -0400
+Processing by ConstraintWeekTemplatesController#index as HTML
+  [1m[35mConstraintDay Load (0.5ms)[0m  SELECT "constraint_days".* FROM "constraint_days"
+  Rendered constraint_days/_chart_display.html.erb (10.0ms)
+  Rendered constraint_week_templates/index.html.erb within layouts/application (11.8ms)
+  Rendered layouts/_navigation_links.html.erb (0.3ms)
+  Rendered layouts/_navigation.html.erb (2.3ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 166ms (Views: 160.7ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/constraint_days" for ::1 at 2015-03-25 14:36:46 -0400
+Processing by ConstraintDaysController#index as HTML
+  Rendered constraint_days/_chart_display.html.erb (2.6ms)
+  Rendered constraint_days/index.html.erb within layouts/application (4.3ms)
+Completed 500 Internal Server Error in 8ms (ActiveRecord: 0.0ms)
+
+NoMethodError - undefined method `each' for nil:NilClass:
+   () Users/AviFoxi/Desktop/active_projects/ibeam_notes_projects/ibeam_v2/app/views/constraint_days/_chart_display.html.erb:13:in `_app_views_constraint_days__chart_display_html_erb__2936126013091501532_70201750779880'
+  actionview (4.2.1) lib/action_view/template.rb:145:in `block in render'
+  activesupport (4.2.1) lib/active_support/notifications.rb:166:in `instrument'
+  actionview (4.2.1) lib/action_view/template.rb:333:in `instrument'
+  actionview (4.2.1) lib/action_view/template.rb:143:in `render'
+  actionview (4.2.1) lib/action_view/renderer/partial_renderer.rb:339:in `render_partial'
+  actionview (4.2.1) lib/action_view/renderer/partial_renderer.rb:310:in `block in render'
+  actionview (4.2.1) lib/action_view/renderer/abstract_renderer.rb:39:in `block in instrument'
+  activesupport (4.2.1) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (4.2.1) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.2.1) lib/active_support/notifications.rb:164:in `instrument'
+  actionview (4.2.1) lib/action_view/renderer/abstract_renderer.rb:39:in `instrument'
+  actionview (4.2.1) lib/action_view/renderer/partial_renderer.rb:309:in `render'
+  actionview (4.2.1) lib/action_view/renderer/renderer.rb:47:in `render_partial'
+  actionview (4.2.1) lib/action_view/helpers/rendering_helper.rb:35:in `render'
+   () Users/AviFoxi/Desktop/active_projects/ibeam_notes_projects/ibeam_v2/app/views/constraint_days/index.html.erb:3:in `_app_views_constraint_days_index_html_erb__2166325517164326321_70201774971420'
+  actionview (4.2.1) lib/action_view/template.rb:145:in `block in render'
+  activesupport (4.2.1) lib/active_support/notifications.rb:166:in `instrument'
+  actionview (4.2.1) lib/action_view/template.rb:333:in `instrument'
+  actionview (4.2.1) lib/action_view/template.rb:143:in `render'
+  actionview (4.2.1) lib/action_view/renderer/template_renderer.rb:54:in `block (2 levels) in render_template'
+  actionview (4.2.1) lib/action_view/renderer/abstract_renderer.rb:39:in `block in instrument'
+  activesupport (4.2.1) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (4.2.1) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.2.1) lib/active_support/notifications.rb:164:in `instrument'
+  actionview (4.2.1) lib/action_view/renderer/abstract_renderer.rb:39:in `instrument'
+  actionview (4.2.1) lib/action_view/renderer/template_renderer.rb:53:in `block in render_template'
+  actionview (4.2.1) lib/action_view/renderer/template_renderer.rb:61:in `render_with_layout'
+  actionview (4.2.1) lib/action_view/renderer/template_renderer.rb:52:in `render_template'
+  actionview (4.2.1) lib/action_view/renderer/template_renderer.rb:14:in `render'
+  actionview (4.2.1) lib/action_view/renderer/renderer.rb:42:in `render_template'
+  actionview (4.2.1) lib/action_view/renderer/renderer.rb:23:in `render'
+  actionview (4.2.1) lib/action_view/rendering.rb:100:in `_render_template'
+  actionpack (4.2.1) lib/action_controller/metal/streaming.rb:217:in `_render_template'
+  actionview (4.2.1) lib/action_view/rendering.rb:83:in `render_to_body'
+  actionpack (4.2.1) lib/action_controller/metal/rendering.rb:32:in `render_to_body'
+  actionpack (4.2.1) lib/action_controller/metal/renderers.rb:37:in `render_to_body'
+  actionpack (4.2.1) lib/abstract_controller/rendering.rb:25:in `render'
+  actionpack (4.2.1) lib/action_controller/metal/rendering.rb:16:in `render'
+  actionpack (4.2.1) lib/action_controller/metal/instrumentation.rb:44:in `block (2 levels) in render'
+  activesupport (4.2.1) lib/active_support/core_ext/benchmark.rb:12:in `block in ms'
+   () Users/AviFoxi/.rvm/rubies/ruby-2.2.0/lib/ruby/2.2.0/benchmark.rb:303:in `realtime'
+  activesupport (4.2.1) lib/active_support/core_ext/benchmark.rb:12:in `ms'
+  actionpack (4.2.1) lib/action_controller/metal/instrumentation.rb:44:in `block in render'
+  actionpack (4.2.1) lib/action_controller/metal/instrumentation.rb:87:in `cleanup_view_runtime'
+  activerecord (4.2.1) lib/active_record/railties/controller_runtime.rb:25:in `cleanup_view_runtime'
+  actionpack (4.2.1) lib/action_controller/metal/instrumentation.rb:43:in `render'
+  actionpack (4.2.1) lib/action_controller/metal/implicit_render.rb:10:in `default_render'
+  actionpack (4.2.1) lib/action_controller/metal/implicit_render.rb:4:in `send_action'
+  actionpack (4.2.1) lib/abstract_controller/base.rb:198:in `process_action'
+  actionpack (4.2.1) lib/action_controller/metal/rendering.rb:10:in `process_action'
+  actionpack (4.2.1) lib/abstract_controller/callbacks.rb:20:in `block in process_action'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:117:in `call'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:555:in `block (2 levels) in compile'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:505:in `call'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:92:in `_run_callbacks'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:776:in `_run_process_action_callbacks'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.1) lib/abstract_controller/callbacks.rb:19:in `process_action'
+  actionpack (4.2.1) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (4.2.1) lib/action_controller/metal/instrumentation.rb:32:in `block in process_action'
+  activesupport (4.2.1) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (4.2.1) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.2.1) lib/active_support/notifications.rb:164:in `instrument'
+  actionpack (4.2.1) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+  actionpack (4.2.1) lib/action_controller/metal/params_wrapper.rb:250:in `process_action'
+  activerecord (4.2.1) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (4.2.1) lib/abstract_controller/base.rb:137:in `process'
+  actionview (4.2.1) lib/action_view/rendering.rb:30:in `process'
+  actionpack (4.2.1) lib/action_controller/metal.rb:196:in `dispatch'
+  actionpack (4.2.1) lib/action_controller/metal/rack_delegation.rb:13:in `dispatch'
+  actionpack (4.2.1) lib/action_controller/metal.rb:237:in `block in action'
+  actionpack (4.2.1) lib/action_dispatch/routing/route_set.rb:74:in `dispatch'
+  actionpack (4.2.1) lib/action_dispatch/routing/route_set.rb:43:in `serve'
+  actionpack (4.2.1) lib/action_dispatch/journey/router.rb:43:in `block in serve'
+  actionpack (4.2.1) lib/action_dispatch/journey/router.rb:30:in `serve'
+  actionpack (4.2.1) lib/action_dispatch/routing/route_set.rb:819:in `call'
+  rack (1.6.0) lib/rack/etag.rb:24:in `call'
+  rack (1.6.0) lib/rack/conditionalget.rb:25:in `call'
+  rack (1.6.0) lib/rack/head.rb:13:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/flash.rb:260:in `call'
+  rack (1.6.0) lib/rack/session/abstract/id.rb:225:in `context'
+  rack (1.6.0) lib/rack/session/abstract/id.rb:220:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/cookies.rb:560:in `call'
+  activerecord (4.2.1) lib/active_record/query_cache.rb:36:in `call'
+  activerecord (4.2.1) lib/active_record/connection_adapters/abstract/connection_pool.rb:649:in `call'
+  activerecord (4.2.1) lib/active_record/migration.rb:378:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:88:in `_run_callbacks'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:776:in `_run_call_callbacks'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.1) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/remote_ip.rb:78:in `call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:84:in `protected_app_call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:79:in `better_errors_call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:57:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  web-console (2.1.2) lib/web_console/middleware.rb:37:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.1) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.1) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.1) lib/rails/rack/logger.rb:20:in `call'
+  quiet_assets (1.1.0) lib/quiet_assets.rb:27:in `call_with_quiet_assets'
+  actionpack (4.2.1) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.0) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.0) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.0) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/static.rb:113:in `call'
+  rack (1.6.0) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.1) lib/rails/engine.rb:518:in `call'
+  railties (4.2.1) lib/rails/application.rb:164:in `call'
+  rack (1.6.0) lib/rack/lock.rb:17:in `call'
+  rack (1.6.0) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.0) lib/rack/handler/webrick.rb:89:in `service'
+   () Users/AviFoxi/.rvm/rubies/ruby-2.2.0/lib/ruby/2.2.0/webrick/httpserver.rb:138:in `service'
+   () Users/AviFoxi/.rvm/rubies/ruby-2.2.0/lib/ruby/2.2.0/webrick/httpserver.rb:94:in `run'
+   () Users/AviFoxi/.rvm/rubies/ruby-2.2.0/lib/ruby/2.2.0/webrick/server.rb:294:in `block in start_thread'
+
+
+
+Started POST "/__better_errors/50e820da44eb769b/variables" for ::1 at 2015-03-25 14:36:46 -0400
+
+
+Started POST "/constraint_days" for ::1 at 2015-03-25 14:36:53 -0400
+Processing by ConstraintDaysController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"78rocMYK+Xx8P8gsW6stb1ja/n1B1GhMu5GXr89Y+rVb2uHUZBvH37PzQg9fccfPinGTKiqOnSN5AwIgJWC7Zw==", "constraint_day"=>{"name"=>"Foo BAR", "avail_starting(1i)"=>"2015", "avail_starting(2i)"=>"3", "avail_starting(3i)"=>"25", "avail_starting(4i)"=>"09", "avail_starting(5i)"=>"11", "avail_ending(1i)"=>"2015", "avail_ending(2i)"=>"3", "avail_ending(3i)"=>"25", "avail_ending(4i)"=>"12", "avail_ending(5i)"=>"11", "hold_performance_block"=>"1", "hold_for_perf_starts(1i)"=>"2015", "hold_for_perf_starts(2i)"=>"3", "hold_for_perf_starts(3i)"=>"25", "hold_for_perf_starts(4i)"=>"18", "hold_for_perf_starts(5i)"=>"11", "hold_for_perf_ends(1i)"=>"2015", "hold_for_perf_ends(2i)"=>"3", "hold_for_perf_ends(3i)"=>"25", "hold_for_perf_ends(4i)"=>"18", "hold_for_perf_ends(5i)"=>"11", "special_hold"=>"0", "special_hold_date(1i)"=>"2017", "special_hold_date(2i)"=>"3", "special_hold_date(3i)"=>"25"}, "commit"=>"Create Constraint day"}
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mConstraintDay Exists (0.2ms)[0m  SELECT  1 AS one FROM "constraint_days" WHERE "constraint_days"."name" = 'Foo BAR' LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  Rendered constraint_days/_form.html.erb (171.5ms)
+  Rendered constraint_days/new.html.erb within layouts/application (175.6ms)
+  Rendered layouts/_navigation_links.html.erb (0.3ms)
+  Rendered layouts/_navigation.html.erb (2.4ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 386ms (Views: 355.6ms | ActiveRecord: 1.7ms)

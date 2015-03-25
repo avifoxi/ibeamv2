@@ -1,0 +1,26 @@
+<table class="table table-bordered">
+
+	<tr>
+		<th>Name</th>
+		<th>Availability Starts</th>
+		<th>Avail Ends</th>
+		<th>Performance Block?</th>
+		<th>Block starts</th>
+		<th>Block ends</th>
+		<th>Special Hold?</th>
+		<th>Block Full Day?</th>
+	</tr>
+	<% cds.each do |cd| %>
+
+		<tr>
+			<th><%= cd.name %></th>
+			<td><%= cd.avail_starting.hour %></td>
+			<td><%= cd.avail_ending.hour %></td>
+			<td><%= cd.hold_for_perf_starts ? true : false %></td>
+			<td><%= cd.hold_for_perf_starts.hour if cd.hold_for_perf_starts %></td>
+			<td><%= cd.hold_for_perf_ends.hour if cd.hold_for_perf_ends %></td>
+			<td><%= cd.special_hold_date ? cd.special_hold_date : false %></td>
+			<td><%= cd.block_whole_day %></td>
+		</tr>
+	<% end %>
+</table>
