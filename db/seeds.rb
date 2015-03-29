@@ -32,6 +32,7 @@ cd_avi_bday = ConstraintDay.create(
 	special_hold_date: Date.new(2015,04,19) )
 
 cwt = ConstraintWeekTemplate.create( 
+	name: 'standard week v1',
 	max_lookahead_for_reh: 90, 
 	max_lookahead_for_perf: 120, 
 	release_unbooked_perf_lookahead: 30, 
@@ -44,6 +45,6 @@ cwt = ConstraintWeekTemplate.create(
 	sunday: cd_sun
 )
 
-p 'errors?'
-p "#{cwt.errors.inspect}"
+# p 'errors?'
+# p "#{cwt.errors.inspect}"
 

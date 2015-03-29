@@ -5,7 +5,10 @@ class CreateConstraintWeekTemplates < ActiveRecord::Migration
       t.integer :max_lookahead_for_perf
       t.integer :release_unbooked_perf_lookahead, default: 30
       t.date :active_starting,                    default: Date.today + 1.day
-      
+      t.date :active_ending,                      default: nil 
+
+      t.string :name
+
       t.references :monday, index: true, foreign_key: true
       t.references :tuesday, index: true, foreign_key: true
       t.references :wednesday, index: true, foreign_key: true

@@ -7,5 +7,6 @@ class ConstraintWeekTemplatesController < ApplicationController
 
 	def index
 		@cds = ConstraintDay.all
+		@cwts = ConstraintWeekTemplate.all
 	end
 end

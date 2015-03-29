@@ -1,3 +1,47 @@
-<h3>Manage Contraint Weeks</h3>
+<h3>Existing Constraint Weeks</h3>
 
+<table class="table table-bordered">
+	<tr>
+		<th>Name</th>
+		<th>Max num of days user can book rehearsal</th>
+		<th>Max num of days user can book performance</th>
+		<th>Days ahead of time unbooked performance holds are released for rehearsal</th> 
+		<th>monday constraint</th>
+		<th>
+			tuesday constraint
+		</th>
+		<th>
+			wednesday constraint
+		</th>
+		<th>
+			thursday constraint
+		</th>
+		<th>
+			friday constraint
+		</th>
+		<th>
+			saturday constraint
+		</th>
+		<th>
+			sunday constraint
+		</th>
+	</tr>
+	<% @cwts.each do |cwt| %>	
+		<tr>
+			<th><%= cwt.name %></th>
+			<td><%= cwt.max_lookahead_for_reh %></td>
+			<td><%= cwt.max_lookahead_for_perf %></td>
+			<td><%= cwt.release_unbooked_perf_lookahead %></td>
+			<td><%= cwt.monday.name %></td>
+			<td><%= cwt.tuesday.name %></td>
+			<td><%= cwt.wednesday.name %></td>
+			<td><%= cwt.thursday.name %></td>
+			<td><%= cwt.friday.name %></td>
+			<td><%= cwt.saturday.name %></td>
+			<td><%= cwt.sunday.name %></td>
+		</tr>
+	<% end %>
+</table>
+
+<h4>Constraint Days to choose from</h4>
 <%= render 'constraint_days/chart_display', :cds => @cds %>

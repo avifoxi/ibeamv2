@@ -1,5 +1,22 @@
 notes-march-25.md
 
+
+
+doing
+
+
+todos
+show constraint weeks
+
+book a reservation against constraints
+
+
+done
+deliver -- a functional interface to 1) set a constraint days, 2) assign days to a constraint week
+
+
+
+
 If --- reservation is a performance ---
 	user must fill performance_proposal within X amount of days
 		name of evening 
