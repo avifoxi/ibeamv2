@@ -31,13 +31,14 @@
 <h3>Choose Constraints for each day of the constraint week template</h3>
 <%= simple_form_for @cwt do |cwt| %>
 
-	<%= cwt.input :monday, collection: @cds %>
-	<%= cwt.input :tuesday, collection: @cds %>
-	<%= cwt.input :wednesday, collection: @cds %>
-	<%= cwt.input :thursday, collection: @cds %>
-	<%= cwt.input :friday, collection: @cds %>
-	<%= cwt.input :saturday, collection: @cds %>
-	<%= cwt.input :sunday, collection: @cds %>
+	<%= cwt.input :name, label: 'Choose a name that suggests what contraints you set' %>
+	<%= cwt.input :monday, collection: @cds, :include_blank => false %>
+	<%= cwt.input :tuesday, collection: @cds, :include_blank => false %>
+	<%= cwt.input :wednesday, collection: @cds, :include_blank => false %>
+	<%= cwt.input :thursday, collection: @cds, :include_blank => false %>
+	<%= cwt.input :friday, collection: @cds, :include_blank => false %>
+	<%= cwt.input :saturday, collection: @cds, :include_blank => false %>
+	<%= cwt.input :sunday, collection: @cds, :include_blank => false %>
 
 	<hr>
 	<%= cwt.input :max_lookahead_for_reh %>
