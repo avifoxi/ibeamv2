@@ -11627,3 +11627,7 @@ Processing by ConstraintWeekTemplatesController#index as HTML
   Rendered layouts/_navigation.html.erb (2.2ms)
   Rendered layouts/_messages.html.erb (0.1ms)
 Completed 200 OK in 181ms (Views: 178.8ms | ActiveRecord: 1.0ms)
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "constraint_week_templates"[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "constraint_days"
+  [1m[36mConstraintDay Load (0.2ms)[0m  [1mSELECT  "constraint_days".* FROM "constraint_days" WHERE "constraint_days"."id" = ? LIMIT 1[0m  [["id", 7]]
+  [1m[35mConstraintDay Load (0.3ms)[0m  SELECT  "constraint_days".* FROM "constraint_days" WHERE "constraint_days"."id" = ? LIMIT 1  [["id", 3]]
