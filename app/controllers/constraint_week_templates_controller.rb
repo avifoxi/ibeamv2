@@ -11,22 +11,13 @@ class ConstraintWeekTemplatesController < ApplicationController
 	end
 
 	def create
-		p '#'*80
-		p 'poorams'
-		p "#{params.inspect}"
-		# p '#'*80
-		# p 'cwt_params'
-		# p "#{cwt_params.inspect}"
-
-		
-
-		# @cwt = ConstraintWeekTemplate.new(cwt_params)
-
-		p '#'*80
-		p "cds_from_nums "
-		p "#{cds_from_nums.inspect}"
-
-
+		@cwt = ConstraintWeekTemplate.new(cwt_params)
+		if @cwt.save
+			redirect_to constraint_week_templates_path
+		else
+			@cds = ConstraintDay.all
+			render :new
+		end
 	end
 
 	private 
@@ -48,4 +39,10 @@ class ConstraintWeekTemplatesController < ApplicationController
 			sunday: ConstraintDay.find( full_params['sunday'])
 		}
 	end
+
+	def cwt_params
+		full_params.slice(:active_starting, :name,:max_lookahead_for_reh, :max_lookahead_for_perf, :release_unbooked_perf_lookahead).merge(cds_from_nums)
+	end
+
+
 end
