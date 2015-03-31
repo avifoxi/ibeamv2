@@ -12481,3 +12481,18 @@ Completed 200 OK in 259ms (Views: 258.7ms | ActiveRecord: 0.1ms)
   [1m[36mReservation Exists (0.3ms)[0m  [1mSELECT  1 AS one FROM "reservations" WHERE ("reservations"."start_time" = '2000-01-01 07:00:00.000000' AND "reservations"."date" = '2015-04-21') LIMIT 1[0m
   [1m[35mReservation Exists (0.2ms)[0m  SELECT  1 AS one FROM "reservations" WHERE ("reservations"."end_time" = '2000-01-01 09:00:00.000000' AND "reservations"."date" = '2015-04-21') LIMIT 1
   [1m[36mConstraintDay Load (0.2ms)[0m  [1mSELECT  "constraint_days".* FROM "constraint_days" WHERE "constraint_days"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mConstraintDay Load (1.1ms)[0m  SELECT  "constraint_days".* FROM "constraint_days" WHERE "constraint_days"."date" = '2014-04-19' LIMIT 1
+SQLite3::SQLException: no such column: constraint_days.date: SELECT  "constraint_days".* FROM "constraint_days" WHERE "constraint_days"."date" = '2014-04-19' LIMIT 1
+  [1m[36mConstraintDay Load (0.4ms)[0m  [1mSELECT  "constraint_days".* FROM "constraint_days" WHERE "constraint_days"."special_hold_date" = ? LIMIT 1[0m  [["special_hold_date", "2014-04-19"]]
+  [1m[35mConstraintDay Load (0.3ms)[0m  SELECT  "constraint_days".* FROM "constraint_days"  ORDER BY "constraint_days"."id" DESC LIMIT 1
+  [1m[36mConstraintDay Load (0.2ms)[0m  [1mSELECT  "constraint_days".* FROM "constraint_days" WHERE "constraint_days"."special_hold_date" = ? LIMIT 1[0m  [["special_hold_date", "2014-04-19"]]
+  [1m[35mConstraintDay Load (0.3ms)[0m  SELECT  "constraint_days".* FROM "constraint_days" WHERE "constraint_days"."special_hold_date" = ? LIMIT 1  [["special_hold_date", "2015-04-19"]]
+  [1m[36mConstraintDay Load (0.2ms)[0m  [1mSELECT  "constraint_days".* FROM "constraint_days" WHERE "constraint_days"."special_hold_date" = ? LIMIT 1[0m  [["special_hold_date", "2015-04-17"]]
+  [1m[35mConstraintDay Load (0.2ms)[0m  SELECT  "constraint_days".* FROM "constraint_days" WHERE "constraint_days"."special_hold_date" = ? LIMIT 1  [["special_hold_date", "2015-04-17"]]
+  [1m[36mConstraintDay Load (0.2ms)[0m  [1mSELECT  "constraint_days".* FROM "constraint_days" WHERE "constraint_days"."special_hold_date" = ? LIMIT 1[0m  [["special_hold_date", "2015-04-19"]]
+  [1m[35mConstraintDay Load (0.2ms)[0m  SELECT  "constraint_days".* FROM "constraint_days" WHERE "constraint_days"."special_hold_date" = ? LIMIT 1  [["special_hold_date", "2015-04-19"]]
+  [1m[36mConstraintWeekTemplate Load (0.2ms)[0m  [1mSELECT  "constraint_week_templates".* FROM "constraint_week_templates"  ORDER BY "constraint_week_templates"."id" DESC LIMIT 1[0m
+  [1m[35mConstraintDay Load (0.3ms)[0m  SELECT  "constraint_days".* FROM "constraint_days"  ORDER BY "constraint_days"."id" ASC LIMIT 1
+  [1m[36mConstraintDay Load (0.3ms)[0m  [1mSELECT  "constraint_days".* FROM "constraint_days" WHERE "constraint_days"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mConstraintDay Load (0.2ms)[0m  SELECT  "constraint_days".* FROM "constraint_days" WHERE "constraint_days"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mConstraintWeekTemplate Load (0.4ms)[0m  [1mSELECT  "constraint_week_templates".* FROM "constraint_week_templates"  ORDER BY "constraint_week_templates"."id" DESC LIMIT 1[0m

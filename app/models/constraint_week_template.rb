@@ -31,6 +31,12 @@ class ConstraintWeekTemplate < ActiveRecord::Base
       return false
     end
     # query constraint days -- is there a non-recurring constraint day that blocks this rental? 
+    
+    special_hold = ConstraintDay.find_by(special_hold_date: reservation.date)
+
+    if special_hold
+
+    end
 
     # Date::DAYNAMES[r.date.wday] => 'Sunday'
     dayname = Date::DAYNAMES[reservation.date.wday].downcase
@@ -44,9 +50,9 @@ class ConstraintWeekTemplate < ActiveRecord::Base
 
   end
 
-  # r =  Reservation.new(date: '2015-4-21', start_time: '07:00', end_time: '9:00')
+  # r =  Reservation.new(date: '2015-4-21', start_time: '09:00', end_time: '21:00')
 
-  private
+  # private
 
   def active_today_or_future
   	unless (self.active_starting + 1.day).today? || self.active_starting.future? 
@@ -54,9 +60,18 @@ class ConstraintWeekTemplate < ActiveRecord::Base
 		end
 	end
 
-  def check_against_cd(res, cd)
-
-
+  def valid_against_cd?(res, cd)
+    unless res.start_time.hour >= cd.avail_starting.hour && res.end_time.hour <= cd.avail_ending.hour
+      res.errors.add(:constraint_day, "invalid against contraints")
+      return false
+    end
+    if cd.hold_for_perf_starts
+      unless res.start_time.hour >= cd.hold_for_perf_starts.hour && res.end_time.hour <= cd.hold_for_perf_ends.hour
+        res.errors.add(:constraint_day, "must not book within performance block hold")
+        return false
+      end
+    end
+    true
   end
 
 end
