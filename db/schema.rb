@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 20150323213327) do
     t.time     "hold_for_perf_starts"
     t.time     "hold_for_perf_ends"
     t.string   "name"
-    t.boolean  "is_special_hold"
+    t.boolean  "block_whole_day"
     t.date     "special_hold_date"
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
@@ -28,8 +28,10 @@ ActiveRecord::Schema.define(version: 20150323213327) do
   create_table "constraint_week_templates", force: :cascade do |t|
     t.integer  "max_lookahead_for_reh"
     t.integer  "max_lookahead_for_perf"
-    t.integer  "release_unbooked_perf_lookahead"
-    t.date     "active_starting"
+    t.integer  "release_unbooked_perf_lookahead", default: 30
+    t.date     "active_starting",                 default: '2015-03-30'
+    t.date     "active_ending"
+    t.string   "name"
     t.integer  "monday_id"
     t.integer  "tuesday_id"
     t.integer  "wednesday_id"
@@ -37,8 +39,8 @@ ActiveRecord::Schema.define(version: 20150323213327) do
     t.integer  "friday_id"
     t.integer  "saturday_id"
     t.integer  "sunday_id"
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
+    t.datetime "created_at",                                             null: false
+    t.datetime "updated_at",                                             null: false
   end
 
   add_index "constraint_week_templates", ["friday_id"], name: "index_constraint_week_templates_on_friday_id"

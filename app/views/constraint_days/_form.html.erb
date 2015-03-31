@@ -1,0 +1,15 @@
+<%= cd.input :name, label: 'Name the constraint something that suggests the limits it places, so its easier to work with.' %>
+
+<%= cd.input :avail_starting, label: 'Reservations available starting at:', :ampm => true, :discard_minute => true %>
+
+<%= cd.input :avail_ending, label: 'Reservations available ending at:', :ampm => true, :discard_minute => true %>
+
+<%= cd.input :hold_performance_block, as: :boolean, label: 'Select to hold a block for performance in this constraint template' %>
+
+<%= cd.input :hold_for_perf_starts, label: 'Hold this window for performances, starting at:', :ampm => true, :discard_minute => true %>
+
+<%= cd.input :hold_for_perf_ends, label: 'Hold this window for performances, ending at:', :ampm => true, :discard_minute => true %>
+
+<%= cd.input :special_hold, as: :boolean, label: 'Select to select this constraint for a specific date, non-recurring (ala christmas, new years)' %>
+
+<%= cd.input :special_hold_date, as: :date, start_year: Date.today.year, end_year: Date.today.year + 2 %>

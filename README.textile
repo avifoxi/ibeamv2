@@ -1,4 +1,9 @@
-h1. !http://railsapps.github.io/images/rails-36x36.jpg(Rails Bootstrap)! Rails and Bootstrap
+h1. Constraint Setting for Scheduling Application 
+
+with a UI in rails -- 
+take it away!
+
+<!-- h1. !http://railsapps.github.io/images/rails-36x36.jpg(Rails Bootstrap)! Rails and Bootstrap
 
 "!https://www.herokucdn.com/deploy/button.png(Deploy to Heroku)!":https://heroku.com/deploy "!https://d3o0mnbgv6k92a.cloudfront.net/assets/hack-l-v1-3cc067e71372f6045e1949af9d96095b.png(Hack RailsApps on Nitrous.IO)!":https://www.nitrous.io/hack_button?source=embed&runtime=rails&repo=RailsApps%2Frails-bootstrap&file_to_open=nitrous.txt
 
@@ -364,3 +369,4 @@ h2. Useful Links
 | "Rails Starter Apps":http://railsapps.github.io/rails-examples-tutorials.html |                      "Rails Project Management":http://railsapps.github.io/rails-project-management.html |
 
 !https://cruel-carlota.pagodabox.com/f339791241ba862267c8d2769a6debbf(githalytics.com alpha)!
+ -->
