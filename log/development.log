@@ -14841,3 +14841,167 @@ Processing by ReservationsController#create as HTML
   Rendered layouts/_navigation.html.erb (1.8ms)
   Rendered layouts/_messages.html.erb (0.9ms)
 Completed 200 OK in 283ms (Views: 275.0ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/" for ::1 at 2015-03-31 13:03:11 -0400
+Processing by ConstraintWeekTemplatesController#index as HTML
+  [1m[35mConstraintWeekTemplate Load (0.2ms)[0m  SELECT "constraint_week_templates".* FROM "constraint_week_templates"
+  [1m[36mConstraintDay Load (0.1ms)[0m  [1mSELECT  "constraint_days".* FROM "constraint_days" WHERE "constraint_days"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "constraint_days".* FROM "constraint_days" WHERE "constraint_days"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "constraint_days".* FROM "constraint_days" WHERE "constraint_days"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "constraint_days".* FROM "constraint_days" WHERE "constraint_days"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mConstraintDay Load (0.1ms)[0m  [1mSELECT  "constraint_days".* FROM "constraint_days" WHERE "constraint_days"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "constraint_days".* FROM "constraint_days" WHERE "constraint_days"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mConstraintDay Load (0.2ms)[0m  [1mSELECT  "constraint_days".* FROM "constraint_days" WHERE "constraint_days"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35mConstraintDay Load (0.2ms)[0m  SELECT "constraint_days".* FROM "constraint_days"
+  Rendered constraint_days/_chart_display.html.erb (1.9ms)
+  Rendered constraint_week_templates/index.html.erb within layouts/application (28.3ms)
+  Rendered layouts/_navigation_links.html.erb (0.2ms)
+  Rendered layouts/_navigation.html.erb (1.7ms)
+  Rendered layouts/_messages.html.erb (0.7ms)
+Completed 200 OK in 255ms (Views: 247.9ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/" for ::1 at 2015-03-31 13:03:11 -0400
+Processing by ConstraintWeekTemplatesController#index as HTML
+  [1m[36mConstraintWeekTemplate Load (0.2ms)[0m  [1mSELECT "constraint_week_templates".* FROM "constraint_week_templates"[0m
+  [1m[35mConstraintDay Load (0.1ms)[0m  SELECT  "constraint_days".* FROM "constraint_days" WHERE "constraint_days"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "constraint_days".* FROM "constraint_days" WHERE "constraint_days"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "constraint_days".* FROM "constraint_days" WHERE "constraint_days"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "constraint_days".* FROM "constraint_days" WHERE "constraint_days"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mConstraintDay Load (0.1ms)[0m  SELECT  "constraint_days".* FROM "constraint_days" WHERE "constraint_days"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "constraint_days".* FROM "constraint_days" WHERE "constraint_days"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mConstraintDay Load (0.3ms)[0m  SELECT  "constraint_days".* FROM "constraint_days" WHERE "constraint_days"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36mConstraintDay Load (0.5ms)[0m  [1mSELECT "constraint_days".* FROM "constraint_days"[0m
+  Rendered constraint_days/_chart_display.html.erb (2.0ms)
+  Rendered constraint_week_templates/index.html.erb within layouts/application (9.1ms)
+  Rendered layouts/_navigation_links.html.erb (0.3ms)
+  Rendered layouts/_navigation.html.erb (2.1ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 142ms (Views: 140.6ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/" for ::1 at 2015-03-31 13:04:11 -0400
+Processing by ConstraintWeekTemplatesController#index as HTML
+  [1m[35mConstraintWeekTemplate Load (0.2ms)[0m  SELECT "constraint_week_templates".* FROM "constraint_week_templates"
+  [1m[36mConstraintDay Load (0.1ms)[0m  [1mSELECT  "constraint_days".* FROM "constraint_days" WHERE "constraint_days"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "constraint_days".* FROM "constraint_days" WHERE "constraint_days"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "constraint_days".* FROM "constraint_days" WHERE "constraint_days"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "constraint_days".* FROM "constraint_days" WHERE "constraint_days"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mConstraintDay Load (0.1ms)[0m  [1mSELECT  "constraint_days".* FROM "constraint_days" WHERE "constraint_days"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "constraint_days".* FROM "constraint_days" WHERE "constraint_days"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mConstraintDay Load (0.1ms)[0m  [1mSELECT  "constraint_days".* FROM "constraint_days" WHERE "constraint_days"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35mConstraintDay Load (0.2ms)[0m  SELECT "constraint_days".* FROM "constraint_days"
+  Rendered constraint_days/_chart_display.html.erb (2.3ms)
+  Rendered constraint_week_templates/index.html.erb within layouts/application (9.5ms)
+  Rendered layouts/_navigation_links.html.erb (0.2ms)
+  Rendered layouts/_navigation.html.erb (1.7ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 155ms (Views: 153.8ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/reservations/new" for ::1 at 2015-03-31 13:04:13 -0400
+Processing by ReservationsController#new as HTML
+  [1m[36mReservation Load (0.2ms)[0m  [1mSELECT "reservations".* FROM "reservations"[0m
+  Rendered reservations/new.html.erb within layouts/application (63.3ms)
+  Rendered layouts/_navigation_links.html.erb (0.8ms)
+  Rendered layouts/_navigation.html.erb (3.3ms)
+  Rendered layouts/_messages.html.erb (0.9ms)
+Completed 200 OK in 212ms (Views: 210.7ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/" for ::1 at 2015-03-31 13:06:30 -0400
+Processing by ConstraintWeekTemplatesController#index as HTML
+  [1m[35mConstraintWeekTemplate Load (0.5ms)[0m  SELECT "constraint_week_templates".* FROM "constraint_week_templates"
+  [1m[36mConstraintDay Load (0.1ms)[0m  [1mSELECT  "constraint_days".* FROM "constraint_days" WHERE "constraint_days"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "constraint_days".* FROM "constraint_days" WHERE "constraint_days"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "constraint_days".* FROM "constraint_days" WHERE "constraint_days"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "constraint_days".* FROM "constraint_days" WHERE "constraint_days"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mConstraintDay Load (0.2ms)[0m  [1mSELECT  "constraint_days".* FROM "constraint_days" WHERE "constraint_days"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "constraint_days".* FROM "constraint_days" WHERE "constraint_days"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mConstraintDay Load (0.2ms)[0m  [1mSELECT  "constraint_days".* FROM "constraint_days" WHERE "constraint_days"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35mConstraintDay Load (0.2ms)[0m  SELECT "constraint_days".* FROM "constraint_days"
+  Rendered constraint_days/_chart_display.html.erb (2.5ms)
+  Rendered constraint_week_templates/index.html.erb within layouts/application (14.9ms)
+  Rendered layouts/_navigation_links.html.erb (0.2ms)
+  Rendered layouts/_navigation.html.erb (2.4ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 160ms (Views: 157.9ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/" for ::1 at 2015-03-31 13:06:33 -0400
+Processing by ConstraintWeekTemplatesController#index as HTML
+  [1m[36mConstraintWeekTemplate Load (0.2ms)[0m  [1mSELECT "constraint_week_templates".* FROM "constraint_week_templates"[0m
+  [1m[35mConstraintDay Load (0.1ms)[0m  SELECT  "constraint_days".* FROM "constraint_days" WHERE "constraint_days"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "constraint_days".* FROM "constraint_days" WHERE "constraint_days"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "constraint_days".* FROM "constraint_days" WHERE "constraint_days"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "constraint_days".* FROM "constraint_days" WHERE "constraint_days"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mConstraintDay Load (0.2ms)[0m  SELECT  "constraint_days".* FROM "constraint_days" WHERE "constraint_days"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "constraint_days".* FROM "constraint_days" WHERE "constraint_days"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mConstraintDay Load (0.1ms)[0m  SELECT  "constraint_days".* FROM "constraint_days" WHERE "constraint_days"."id" = ? LIMIT 1  [["id", 3]]
+  [1m[36mConstraintDay Load (0.1ms)[0m  [1mSELECT "constraint_days".* FROM "constraint_days"[0m
+  Rendered constraint_days/_chart_display.html.erb (1.3ms)
+  Rendered constraint_week_templates/index.html.erb within layouts/application (8.2ms)
+  Rendered layouts/_navigation_links.html.erb (0.2ms)
+  Rendered layouts/_navigation.html.erb (2.0ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 155ms (Views: 154.0ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/pages/about" for ::1 at 2015-03-31 13:06:34 -0400
+Processing by HighVoltage::PagesController#show as HTML
+  Parameters: {"id"=>"about"}
+  Rendered pages/about.html.erb within layouts/application (0.6ms)
+  Rendered layouts/_navigation_links.html.erb (0.2ms)
+  Rendered layouts/_navigation.html.erb (2.0ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 129ms (Views: 128.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2015-03-31 13:06:37 -0400
+Processing by ConstraintWeekTemplatesController#index as HTML
+  [1m[35mConstraintWeekTemplate Load (0.2ms)[0m  SELECT "constraint_week_templates".* FROM "constraint_week_templates"
+  [1m[36mConstraintDay Load (0.1ms)[0m  [1mSELECT  "constraint_days".* FROM "constraint_days" WHERE "constraint_days"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "constraint_days".* FROM "constraint_days" WHERE "constraint_days"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "constraint_days".* FROM "constraint_days" WHERE "constraint_days"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "constraint_days".* FROM "constraint_days" WHERE "constraint_days"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mConstraintDay Load (0.1ms)[0m  [1mSELECT  "constraint_days".* FROM "constraint_days" WHERE "constraint_days"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "constraint_days".* FROM "constraint_days" WHERE "constraint_days"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mConstraintDay Load (0.1ms)[0m  [1mSELECT  "constraint_days".* FROM "constraint_days" WHERE "constraint_days"."id" = ? LIMIT 1[0m  [["id", 3]]
+  [1m[35mConstraintDay Load (0.2ms)[0m  SELECT "constraint_days".* FROM "constraint_days"
+  Rendered constraint_days/_chart_display.html.erb (1.5ms)
+  Rendered constraint_week_templates/index.html.erb within layouts/application (8.3ms)
+  Rendered layouts/_navigation_links.html.erb (0.2ms)
+  Rendered layouts/_navigation.html.erb (2.1ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 153ms (Views: 151.2ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/constraint_week_templates/new" for ::1 at 2015-03-31 13:06:40 -0400
+Processing by ConstraintWeekTemplatesController#new as HTML
+  [1m[36mConstraintDay Load (0.3ms)[0m  [1mSELECT "constraint_days".* FROM "constraint_days"[0m
+  Rendered constraint_week_templates/new.html.erb within layouts/application (287.7ms)
+  Rendered layouts/_navigation_links.html.erb (0.2ms)
+  Rendered layouts/_navigation.html.erb (1.9ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 438ms (Views: 436.7ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/constraint_days/new" for ::1 at 2015-03-31 13:06:46 -0400
+Processing by ConstraintDaysController#new as HTML
+  Rendered constraint_days/_form.html.erb (155.6ms)
+  Rendered constraint_days/new.html.erb within layouts/application (159.2ms)
+  Rendered layouts/_navigation_links.html.erb (0.2ms)
+  Rendered layouts/_navigation.html.erb (2.5ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 299ms (Views: 297.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/reservations/new" for ::1 at 2015-03-31 13:07:00 -0400
+Processing by ReservationsController#new as HTML
+  [1m[35mReservation Load (0.3ms)[0m  SELECT "reservations".* FROM "reservations"
+  Rendered reservations/new.html.erb within layouts/application (77.9ms)
+  Rendered layouts/_navigation_links.html.erb (0.2ms)
+  Rendered layouts/_navigation.html.erb (1.9ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 217ms (Views: 215.3ms | ActiveRecord: 0.3ms)
