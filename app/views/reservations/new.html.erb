@@ -10,8 +10,8 @@
 	<% @reservations.each do |res| %>
 		<tr>
 			<td><%= res.date  %></td>
-			<td><%= res.start_time  %></td>
-			<td><%= res.end_time  %></td>
+			<td><%= res.start_time.hour  %></td>
+			<td><%= res.end_time.hour  %></td>
 		</tr>
 
 	<% end %>
