@@ -7,3 +7,12 @@
     </div>
   <% end %>
 <% end %>
+
+<% if @errors %>
+	
+    <div class="alert alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= @errors.full_messages.to_sentence %>
+    </div>
+	
+<% end %>

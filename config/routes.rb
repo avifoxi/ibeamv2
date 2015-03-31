@@ -3,5 +3,6 @@ Rails.application.routes.draw do
 
   resources :constraint_days
   resources :constraint_week_templates
-
+  resources :reservations
+  
 end
