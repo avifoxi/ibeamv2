@@ -40,6 +40,7 @@ class ConstraintWeekTemplate < ActiveRecord::Base
     end
     # Date::DAYNAMES[r.date.wday] => 'Sunday'
     dayname = Date::DAYNAMES[reservation.date.wday].downcase
+    
     constraint_day = self.send(dayname)
     unless self.valid_against_cd?(reservation, constraint_day)
       return false

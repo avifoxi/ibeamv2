@@ -1,6 +1,20 @@
+Notes for March 31 -- 
+
+Deploy app in proto stage --> Bryan - try to break 
+
+Flesh out Reservation validation 
+	- differentiat btw reh + performance, validate as needed
+	- defintely want to add a rehearsal notes to view on calendar
+
+NOTES -- in rehearsals or reservations 
+	-- we may not need multiple CWT 
+	-- ALSO -- but 
+
+
+
+
+
 notes-march-25.md
-
-
 
 doing
 

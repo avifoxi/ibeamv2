@@ -7,13 +7,17 @@ class ReservationsController < ApplicationController
 	end
 
 	def create
-		p '$'*80
-		p 'mergey pergey'
-		p "#{full_params.except(:block).merge(block_to_start_end)}"
+		# p '$'*80
+		# p 'mergey pergey'
+		# p "#{full_params.except(:block).merge(block_to_start_end)}"
+		
 		@res = Reservation.new(res_params)
 		cwt = ConstraintWeekTemplate.current
+		
+
 		# p 'block_to_start_end'
 		# p "#{block_to_start_end.inspect}"
+		
 		if cwt.validate(@res) 
 			@res.save
 			flash[:notice] = "Reservation added!"
